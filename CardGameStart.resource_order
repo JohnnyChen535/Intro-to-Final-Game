@@ -1,0 +1,23 @@
+{
+  "FolderOrderSettings":[
+    {"name":"spr_e","order":11,"path":"folders/Sprites/spr_e.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"obj_bullet","order":6,"path":"objects/obj_bullet/obj_bullet.yy",},
+    {"name":"obj_card","order":1,"path":"objects/obj_card/obj_card.yy",},
+    {"name":"obj_enemy","order":3,"path":"objects/obj_enemy/obj_enemy.yy",},
+    {"name":"obj_enemycontroller","order":2,"path":"objects/obj_enemycontroller/obj_enemycontroller.yy",},
+    {"name":"obj_player","order":5,"path":"objects/obj_player/obj_player.yy",},
+    {"name":"obj_ucard","order":4,"path":"objects/obj_ucard/obj_ucard.yy",},
+    {"name":"room0","order":1,"path":"rooms/room0/room0.yy",},
+    {"name":"spr_back","order":5,"path":"sprites/spr_back/spr_back.yy",},
+    {"name":"spr_ehit","order":1,"path":"sprites/spr_ehit/spr_ehit.yy",},
+    {"name":"spr_ewalk","order":2,"path":"sprites/spr_ewalk/spr_ewalk.yy",},
+    {"name":"spr_fireball","order":1,"path":"sprites/spr_fireball/spr_fireball.yy",},
+    {"name":"spr_fireballbullet","order":14,"path":"sprites/spr_fireballbullet/spr_fireballbullet.yy",},
+    {"name":"spr_firebomb","order":3,"path":"sprites/spr_firebomb/spr_firebomb.yy",},
+    {"name":"spr_firerain","order":7,"path":"sprites/spr_firerain/spr_firerain.yy",},
+    {"name":"spr_lavaball","order":12,"path":"sprites/spr_lavaball/spr_lavaball.yy",},
+    {"name":"spr_pidle","order":13,"path":"sprites/spr_pidle/spr_pidle.yy",},
+  ],
+}

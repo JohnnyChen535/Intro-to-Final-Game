@@ -14,7 +14,6 @@ switch(global.state) {
                 _dealt_card.in_player_hand = true;
                 _dealt_card.face_up = true;
                 
-                // 调整所有手牌的位置，使其水平并排
                 for (var i = 0; i < ds_list_size(player_hand); i++) {
                     var _1_handcard = ds_list_find_value(player_hand, i);
                     _1_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
@@ -22,8 +21,8 @@ switch(global.state) {
                 }
             } else {
                 show_debug_message("handfull");
-				if(global.body_count>10){
-				global.staet = STATES.UPGRADE;
+				if(global.upgrade = true){
+				global.state = STATES.UPGRADE;
 				}
 				else{
                 global.state = STATES.CHOOSE;
@@ -34,12 +33,30 @@ switch(global.state) {
 		
 	case STATES.UPGRADE:
 	if(move_timer ==0){
+		var _upgrade_num = ds_list_size(upgrade_hand);
+		if(_upgrade_num <3){
+                var _upgrade_card = ds_list_find_value(upgradecard, 0);
+                ds_list_delete(upgradecard, 0);
+                ds_list_add(upgrade_hand, _upgrade_card);
+                _upgrade_card.in_upgrader_hand = true;
+                _upgrade_card.face_up = true;
+                
+                for (var i = 0; i < ds_list_size(upgrade_hand); i++) {
+                    var _2_handcard = ds_list_find_value(upgrade_hand, i);
+                    _2_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
+                    _2_handcard.target_y = room_height * 0.9; 
+                }
+            } else {
+
+            }			
+			
 	global.upgrade = false;
-	
+	global.state = STATES.CHOOSE;
 	}
 	break;
 
     case STATES.CHOOSE:
+	if(move_timer ==0){
         if(ds_list_size(player_selected) > 0) {
             var _player_chosen = ds_list_find_value(player_selected, 0);
             ds_list_delete(player_hand, _player_chosen);
@@ -51,6 +68,7 @@ switch(global.state) {
                 _2_handcard.target_y = room_height * 0.9;
             }
         }
+	}
         break;
 		
 case STATES.RESOLVEPL:

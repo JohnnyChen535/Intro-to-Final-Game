@@ -10,6 +10,13 @@ else
 	y = y;
 }
 
-if (death_animation_done) {
+if(y>770)
+{
+global.enemy_count--;
+instance_destroy();
+}
+
+if (death_animation_done) 
+{
     instance_destroy(); 
 }

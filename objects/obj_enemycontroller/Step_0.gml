@@ -15,11 +15,12 @@ if (frame_counter >= refresh_rate) {
 
 switch (state) {
     case EnemyState.GENERATE:
+	global.enemy_speed = 0.5;
         if (global.enemy_count < max_enemies) {
             spawn_timer += 1;
             if (spawn_timer >= spawn_interval) {
-                var new_enemy = instance_create_layer(350, -20, "Enemies", obj_enemy);
-				var offset = choose(-100, 0, 100);
+                var new_enemy = instance_create_layer(250, -20, "Enemies", obj_enemy);
+				var offset = choose(irandom_range(0, 100), irandom_range(101, 200), irandom_range(201, 300));
 				new_enemy.x += offset;
                 spawn_timer = 0;
                 global.enemy_count += 1;
@@ -30,6 +31,7 @@ switch (state) {
         break;
     
     case EnemyState.STOP:
+	global.enemy_speed = 0;
         // 停止生成敌人，不执行生成逻辑
         // 可以在这里添加其他逻辑，比如检查敌人是否被消灭等
         break;

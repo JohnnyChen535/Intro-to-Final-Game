@@ -14,8 +14,26 @@ switch(global.state) {
 				target_y = room_height *0.8 - 175;
 				target_x = room_width/2.75 + 100;
 				ds_list_add(obj_dealer.player_selected, id);
+				instance_create_layer(obj_player.x, 500, "Instances", obj_ubullet);
 			}
 		}
+		break;
+		
+	case STATES.UPGRADE:
+
+	if(in_upgrader_hand && face_up)
+	{
+
+		if(position_meeting(mouse_x, mouse_y, id) &&
+		mouse_check_button_pressed(mb_left)) 
+		{
+			face_up = true;	
+			card_choosen = true;
+			target_y = room_height *0.8 - 175;
+			target_x = room_width/2.75 + 100;
+			ds_list_add(obj_dealer.upgrade_selected, id);
+		}
+	}
 	default:
 	break;
 

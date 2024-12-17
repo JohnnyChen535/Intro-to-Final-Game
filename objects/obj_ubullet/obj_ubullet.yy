@@ -34,8 +34,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_fireballbullet",
-    "path":"sprites/spr_fireballbullet/spr_fireballbullet.yy",
+    "name":"spr_firebombbullet",
+    "path":"sprites/spr_firebombbullet/spr_firebombbullet.yy",
   },
   "spriteMaskId":null,
   "visible":true,

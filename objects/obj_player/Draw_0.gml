@@ -12,8 +12,8 @@ draw_set_font(fnt_score);
 
 draw_sprite_ext(wand, 0, x, centerY, 1, 1, aimDir, c_white, 1);
 
-draw_text(200, room_height - 200, string(aimDir1));
+//draw_text(200, room_height - 200, string(aimDir1));
 
 draw_self();
-draw_text(10, room_height - 50,  string(pl_health));
+draw_text(20, room_height - 50,  string(pl_health));
 

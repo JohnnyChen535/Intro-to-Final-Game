@@ -13,8 +13,8 @@ if(abs(y - target_y) > 1)
 	y = target_y;
 }
 
-if(face_index == 0) sprite_index = spr_firebomb;
-if(face_index == 1) sprite_index = spr_fireball;
+if(face_index == 0) sprite_index = spr_fireball;
+if(face_index == 1) sprite_index = spr_firebomb;
 
 if(!face_up) sprite_index =spr_back;
 

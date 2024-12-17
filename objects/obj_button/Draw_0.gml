@@ -22,4 +22,17 @@ draw_set_halign(fa_center); // 水平居中对齐
 draw_set_valign(fa_middle); // 垂直居中对齐
 
 // 绘制标题
+var room_name = room_get_name(room);
+
+if(room_name = "Room2")
+{
 draw_text(room_width / 2, room_height / 4, "Wizard Deck");
+draw_text(room_width / 2, room_height / 1.5, "Click & Drag Card to cast Spell");
+draw_text(room_width / 2, (room_height / 1.5)+50, "Try to Survive");
+}
+
+if(room_name = "Room3")
+{
+draw_text(room_width / 2, room_height / 4, "You DIED");
+draw_text(room_width / 2, room_height / 3, "Try Again?");
+}

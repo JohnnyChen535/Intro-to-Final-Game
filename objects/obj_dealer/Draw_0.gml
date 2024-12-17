@@ -7,4 +7,4 @@ draw_set_font(fnt_score);
 
 
 draw_self();
-draw_text(10, room_height - 100,  string(global.body_count));
+draw_text(20, room_height - 100,  string(global.body_count));

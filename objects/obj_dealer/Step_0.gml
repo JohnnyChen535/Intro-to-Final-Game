@@ -18,11 +18,13 @@ switch(global.state) {
                     var _1_handcard = ds_list_find_value(player_hand, i);
                     _1_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
                     _1_handcard.target_y = room_height * 0.9; 
+					audio_play_sound(snd_deal, 10, false);
                 }
             } else {
                 show_debug_message("handfull");
 				if(global.upgrade = true){
 				global.state = STATES.UPGRADE;
+				audio_play_sound(snd_lvup, 10, false);
 				}
 				else{
               global.state = STATES.CHOOSE;
@@ -33,6 +35,7 @@ switch(global.state) {
 		
 	case STATES.UPGRADE:
 	if(move_timer ==0){
+		
 		var _upgrade_num = ds_list_size(upgrade_hand);
 		if(_upgrade_num <3){
 			
@@ -45,8 +48,9 @@ switch(global.state) {
                 
                 for (var i = 0; i < ds_list_size(upgrade_hand); i++) {
                     var _2_handcard = ds_list_find_value(upgrade_hand, i);
-                    _2_handcard.target_x = room_width / 3.2 + i * hand_x_offset;
+                    _2_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
                     _2_handcard.target_y = room_height * 0.4; 
+					audio_play_sound(snd_deal, 10, false);
                 }
             } 
 			else {
@@ -98,21 +102,30 @@ switch(global.state) {
 
         // 如果玩家完成选择，将 `upgrade_hand` 中的卡牌放回 `upgradecard`
         if (ds_list_size(uplayer_selected) == 1 && ds_list_size(upgrade_selected) > 0) {
-            while (ds_list_size(upgrade_hand) > 0) {
+            while (ds_list_size(upgrade_hand) >0) {
                 var upgrade_card = ds_list_find_value(upgrade_hand, 0);
                 ds_list_delete(upgrade_hand, 0);
                 ds_list_add(upgradecard, upgrade_card);
 
                 // 更新卡牌目标位置
-                upgrade_card.target_x = room_width / 3.5 + ds_list_size(upgradecard) * hand_x_offset;
+                upgrade_card.target_x = room_width +100;
                 upgrade_card.target_y = room_height * 0.7;
+				audio_play_sound(snd_deal, 10, false);
 
 					}
+					
 				ds_list_clear(upgrade_selected);
 				ds_list_clear(uplayer_selected);
+				for (var i = 0; i < ds_list_size(player_hand); i++) {
+                var _2_handcard = ds_list_find_value(player_hand, i);
+                _2_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
+                _2_handcard.target_y = room_height * 0.9;
+				audio_play_sound(snd_deal, 10, false);
+				}
+				
 				global.upgrade = false;
 				obj_enemycontroller.state = EnemyState.GENERATE;
-				global.state = STATES.CHOOSE;
+				global.state = STATES.DEALPL;
 				}
             }			
 			
@@ -125,19 +138,24 @@ switch(global.state) {
 	if(global.upgrade = true){
 				global.state = STATES.UPGRADE;
 				}
-        if(ds_list_size(player_selected) > 0) {
-            var _player_chosen = ds_list_find_value(player_selected, 0);
-			//var _index = ds_list_find_index(player_selected,_player_chosen)
-            ds_list_delete(player_hand, _player_chosen);
-            global.state = STATES.RESOLVEPL;
-        } else {
+
+				if(ds_list_size(player_selected) > 0) 
+				{
+				 var _player_chosen = ds_list_find_value(player_selected, 0);
+				//var _index = ds_list_find_index(player_selected,_player_chosen)
+				ds_list_delete(player_hand, _player_chosen);
+				global.state = STATES.RESOLVEPL;
+				}
+        } 
+		else if(global.holding_card = false){
             for (var i = 0; i < ds_list_size(player_hand); i++) {
                 var _2_handcard = ds_list_find_value(player_hand, i);
                 _2_handcard.target_x = room_width / 2.75 + i * hand_x_offset;
                 _2_handcard.target_y = room_height * 0.9;
+			} 
             }
-        }
-	}
+        
+	
         break;
 		
 case STATES.RESOLVEPL:
@@ -150,6 +168,7 @@ case STATES.RESOLVEPL:
 
             // Add the selected card to the discard list
             ds_list_add(discard, _hand_card);
+			audio_play_sound(snd_discardcard, 10, false);
 
             // Remove the selected card from player_selected
             ds_list_delete(player_selected, 0);
@@ -177,6 +196,7 @@ case STATES.RESOLVEPL:
             // Handle other states if no card is selected
             if (ds_list_size(deck) == 0) {
                 global.state = STATES.RESHUFFLE;
+				obj_enemycontroller.state = EnemyState.STOP;
             } else {
                 global.state = STATES.DEALPL;
             }
@@ -193,6 +213,7 @@ case STATES.RESOLVEPL:
 	if(ds_list_size(deck) <7) {
 	randomize();
 	ds_list_shuffle(deck);
+	audio_play_sound(snd_reshuffle, 10, false);
 	var _dis_num = ds_list_size(discard);
 	if(_dis_num >0){
 		var _dis_card = ds_list_find_value(discard, 0);
@@ -207,7 +228,7 @@ case STATES.RESOLVEPL:
 		}
 	}
 		}else{
-
+	obj_enemycontroller.state = EnemyState.GENERATE;
 	global.state = STATES.DEALPL;
 		}
 	}

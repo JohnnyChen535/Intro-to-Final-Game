@@ -15,7 +15,7 @@ if (frame_counter >= refresh_rate) {
 
 switch (state) {
     case EnemyState.GENERATE:
-	global.enemy_speed = 0.5;
+	global.enemy_speed = 0.3;
         if (global.enemy_count < max_enemies) {
             spawn_timer += 1;
             if (spawn_timer >= spawn_interval) {

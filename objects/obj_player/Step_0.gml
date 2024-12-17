@@ -2,7 +2,7 @@
 // You can write your code in this editor
 if(pl_health<1)
 {
-	game_end();
+	room_goto(Room3);
 }
 
 
@@ -25,3 +25,58 @@ else
 aimDir = aimDir2 - aimdif;
 
 
+if(castspell)
+{
+var _bulletinst = instance_create_depth ( x, centerY, depth - 100, obj_bullet );
+
+with( _bulletinst)
+{
+dir = other.aimDir1;	
+}
+castspell = false;
+}
+
+if(castfbspell)
+{
+var _bulletinst = instance_create_depth ( x + 20, centerY , depth - 100, obj_bullet );
+_bulletinst.fireball = false;
+
+with( _bulletinst)
+{
+dir = other.aimDir1;	
+}
+
+var _bulletinst1 = instance_create_depth ( x - 20, centerY , depth - 100, obj_bullet );
+_bulletinst1.fireball = false;
+
+with( _bulletinst1)
+{
+dir = other.aimDir1;	
+}
+castfbspell = false;
+}
+
+if(castuspell)
+{
+var _bulletinst = instance_create_depth ( x, centerY, depth - 100, obj_ubullet );
+
+with( _bulletinst)
+{
+dir = other.aimDir1;	
+}
+
+var _bulletinst2 = instance_create_depth ( x, centerY, depth - 100, obj_ubullet );
+
+with( _bulletinst2)
+{
+dir = other.aimDir1 - 20;	
+}
+
+var _bulletinst1 = instance_create_depth ( x, centerY, depth - 100, obj_ubullet );
+
+with( _bulletinst1)
+{
+dir = other.aimDir1 + 20;	
+}
+castuspell = false;
+}
